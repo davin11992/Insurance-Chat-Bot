@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>보험 약관 Q&A 챗봇</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="app-container">
+      <div class="header">
+        <span>보험 약관 Q&A 봇</span>
+        <div>
+          <button class="upload-btn" onclick="toggleUpload()">문서 추가</button>
+          <button class="upload-btn reset-btn" onclick="resetDatabase()" style="background-color: #dc3545; margin-left: 5px">DB 초기화</button>
+        </div>
+      </div>
+
+      <!-- 업로드 패널 -->
+      <!-- ※ Step 2 핵심: JS 없이 HTML form으로 파일 업로드! -->
+      <div id="upload-panel" class="upload-panel">
+        <div class="upload-content">
+          <p>보험 약관 PDF를 업로드하면 챗봇이 해당 약관 내용을 학습합니다.</p>
+          <p class="file-types">지원 형식: .txt, .md, .pdf</p>
+
+          <input type="file" accept=".txt,.md,.pdf" required />
+          <button>업로드</button>
+        </div>
+      </div>
+
+      <div id="chat-window" class="chat-window">
+        <div class="message bot">안녕하세요! 보험 약관을 업로드한 뒤 궁금한 점을 물어보세요. (예: 보험금 청구 서류, 보험금 지급 기한, 공시이율 최저보증, 계약자적립액 인출 한도 등)</div>
+      </div>
+
+      <div class="disclaimer">※ 본 답변은 업로드한 약관 기반 참고용입니다. 정확한 내용은 보험증권·약관 원문 및 보험사 상담을 통해 확인하세요.</div>
+
+      <div class="input-area">
+        <input type="text" id="user-input" placeholder="약관에 대해 질문하세요..." />
+        <label class="rag-checkbox-label"> <input type="checkbox" id="rag-toggle" /> RAG </label>
+        <button onclick="sendMessage()">전송</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
